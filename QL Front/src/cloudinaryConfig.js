@@ -1,9 +1,5 @@
 
 
-const cloudinaryConfig = {
-  cloudName: 'dachr5i8f',
-  uploadPreset: 'propiedades'
-};
 
 export const openCloudinaryWidget = (callback) => {
   if (!window.cloudinary) {
