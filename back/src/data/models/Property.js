@@ -83,6 +83,36 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
 
+      matriculaOPadron: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          notEmpty: true,
+        },
+      },
+
+      // Campos específicos para lotes
+      frente: {
+        type: DataTypes.STRING,
+        allowNull: true, // Solo aplicable para lotes
+      },
+      
+      profundidad: {
+        type: DataTypes.STRING,
+        allowNull: true, // Solo aplicable para lotes
+      },
+
+      // Link de Instagram para todas las propiedades
+      linkInstagram: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          isUrl: {
+            msg: "Debe ser una URL válida"
+          }
+        },
+      },
+
       images: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         defaultValue: [],

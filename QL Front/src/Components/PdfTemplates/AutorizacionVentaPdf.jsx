@@ -14,7 +14,7 @@ const AutorizacionVentaPdf = ({ client, property }) => {
 
     // PRIMERO
     doc.setFontSize(12);
-    const firstText = `En la ciudad de Belén, provincia de Catamarca, entre el Sr. ${client.name} CUIL/CUIT ${client.cuil} ${property.socio} ,  denominado el/los PROPIETARIOS, por una parte, y QUINTERO LOBETO PROPIEDADES, Tel celular 3835 521584-410338 con domicilio en Av. Cubas Nº50 de la ciudad de Belén, en adelante denominado LA INMOBILIARIA han llegado a un acuerdo para la autorización de venta del inmueble bajo las siguientes condiciones.`;
+    const firstText = `En la ciudad de Belén, provincia de Catamarca, entre el Sr. ${client.name} CUIL/CUIT ${client.cuil} ${property.socio} ,  denominado el/los PROPIETARIOS, por una parte, y QUINTERO LOBETO PROPIEDADES, Tel celular 3835-503166 con domicilio en Av. Cubas Nº50 de la ciudad de Belén, en adelante denominado LA INMOBILIARIA han llegado a un acuerdo para la autorización de venta del inmueble bajo las siguientes condiciones.`;
     const firstTextLines = doc.splitTextToSize(firstText, maxWidth);
     doc.text(firstTextLines, 20, currentY);
     currentY += firstTextLines.length * 8; // Incremento dinámico según el texto

@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 
 const UpcomingExpiryPopup = () => {
-  const { leases } = useSelector((state) => state);
+  const leases = useSelector((state) => state.leases);
   const [showPopup, setShowPopup] = useState(false);
   const [alertContracts, setAlertContracts] = useState([]);
 
-  useEffect(() => {
-    if (!leases || leases.length === 0) return;
+  // Calcular contratos próximos a vencer (optimizado)
+  const upcomingContracts = useMemo(() => {
+    if (!leases || leases.length === 0) return [];
     const now = new Date();
-    const upcoming = leases.filter((lease) => {
+    return leases.filter((lease) => {
       // Calcula la fecha de culminación sumando totalMonths a la fecha de inicio
       const terminationDate = new Date(lease.startDate);
       terminationDate.setMonth(terminationDate.getMonth() + lease.totalMonths);
@@ -19,11 +20,14 @@ const UpcomingExpiryPopup = () => {
         (terminationDate.getMonth() - now.getMonth());
       return diffMonths >= 0 && diffMonths <= 3;
     });
-    if (upcoming.length > 0) {
-      setAlertContracts(upcoming);
+  }, [leases]);
+
+  useEffect(() => {
+    if (upcomingContracts.length > 0) {
+      setAlertContracts(upcomingContracts);
       setShowPopup(true);
     }
-  }, [leases]);
+  }, [upcomingContracts]);
 
   if (!showPopup) return null;
 

@@ -13,6 +13,10 @@ exports.createProperty = async (req, res) => {
         images,
         comision,
         escritura,
+        matriculaOPadron,
+        frente,
+        profundidad,
+        linkInstagram,
         rooms, // Asegúrate de que rooms está incluido
         socio,
         inventory,
@@ -67,6 +71,10 @@ exports.createProperty = async (req, res) => {
         images,
         comision,
         escritura,
+        matriculaOPadron: matriculaOPadron || null,
+        frente: frente || null,
+        profundidad: profundidad || null,
+        linkInstagram: linkInstagram || null,
         rooms: parsedRooms, // Asignar parsedRooms al modelo
         isAvailable: true, // Si isAvailable debe tener un valor por defecto
         description: req.body.description || "", // Valor por defecto para description
